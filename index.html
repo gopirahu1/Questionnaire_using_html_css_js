@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .questionnaire {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+        .icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+        .question {
+            margin-bottom: 15px;
+        }
+        .choices {
+            display: flex;
+            justify-content: space-around;
+        }
+        .choices button {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .accept {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .decline {
+            background-color: #f44336;
+            color: white;
+        }
+    </style>
+    <title>Questionnaire</title>
+</head>
+<body>
+    <div class="questionnaire">
+        <div class="icon">🔍</div>
+        <div class="question">
+            <p id="question-text"></p>
+        </div>
+        <div class="choices">
+            <button class="accept" onclick="nextQuestion()">Accept</button>
+            <button class="decline" onclick="nextQuestion()">Decline</button>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            "Question 1: Do you accept the terms?",
+            "Question 2: Do you agree with the policy?",
+            "Question 3: Do you want to proceed?",
+            "Question 4: Do you accept the changes?",
+            "Question 5: Do you approve the request?"
+        ];
+
+        let currentQuestionIndex = 0;
+
+        function displayQuestion() {
+            document.getElementById('question-text').innerText = questions[currentQuestionIndex];
+        }
+
+        function nextQuestion() {
+            currentQuestionIndex++;
+            if (currentQuestionIndex < questions.length) {
+                displayQuestion();
+            } else {
+                document.getElementById('question-text').innerText = "Thank you for your responses!";
+                document.querySelector('.choices').style.display = 'none';
+            }
+        }
+
+        // Display the first question initially
+        displayQuestion();
+    </script>
+</body>
+</html>
